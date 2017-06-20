@@ -63,7 +63,9 @@ const data = [
 render(
     <Router history={browserHistory}>
         <Route component={Main}>
+            <IndexRoute component={Home} />
             <Route path="/" component={Home}/>
+            {/*<IndexRoute component={Home} />*/}
             <Route path="/cars" component={Car} data={data}/>
             {/* Parameter route*/}
             <Route path="/cars/:id" component={CarDetail} data={data}/>
