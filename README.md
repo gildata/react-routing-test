@@ -35,6 +35,11 @@ https://css-tricks.com/learning-react-router/
 
 
 
+npm run watch
+
+npm start
+
+
 
 
 

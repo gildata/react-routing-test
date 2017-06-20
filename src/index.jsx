@@ -9,6 +9,8 @@ import About from './common/about.component.jsx'
 import Car from './car/car.component.jsx'
 import CarDetail from './car/car-detail.component.jsx'
 
+
+
 const data = [
     {
         id: 1,

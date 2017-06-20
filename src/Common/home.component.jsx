@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 
+import Sidebar from './Sidebar.jsx';
+
+
 class Home extends Component {
     render(){
-        return (<h1>Home Page</h1>);
+        return(
+            <div>
+                <Sidebar/>
+                <h1>Home Page</h1>
+            </div>
+        );
     }
 }
 
