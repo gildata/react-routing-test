@@ -1,0 +1,18 @@
+{
+  "books": [
+    {
+      "id": 101, 
+      "title": "Zero to One", 
+      "author":"Peter Thiel", 
+      "year_published": 2014,
+      "rating": 4.03
+    },
+    {
+      "id": 102, 
+      "title": "The Origin of Species", 
+      "author": "Charles Darwin", 
+      "year_published": 1889,
+      "rating": 4.20
+    }
+  ]
+}
