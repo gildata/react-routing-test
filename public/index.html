@@ -4,8 +4,15 @@
     <base href="/" />
     <title>Scotch Cars</title>
     <!--Stylesheet-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.xgqfrms.xyz/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- https://cdn.xgqfrms.xyz/bootstrap/3.3.7/css/bootstrap.min.css -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        .input{
+            border: 1px solid red;
+            background: rgba(125, 125, 125, 0.7);
+        }
+    </style>
 </head>
 
 <body>
@@ -13,6 +20,17 @@
     <div id="container"></div>
     <!--Bundled file-->
     <script src="bundle.js"></script>
+    <div class="input">
+        <input class="null-input" value="" placeholder="请选择日期" />
+        input type === null <br>
+        <input class="text-input" value="" placeholder="请选择日期" type="text"/>
+        input type === text <br>
+    </div>
+    <script>
+        let input_value = document.querySelector(".ant-calendar-picker-input");
+        let key = input_value.getAttribute('value');
+        console.log(`input_value = ${key}`);
+    </script>
 </body>
 
 </html>

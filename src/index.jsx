@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 // Import routing components
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
@@ -61,18 +61,55 @@ const data = [
     }
 ];
 
+// Object.keys(obj).length
 
-render(
-    <Router history={browserHistory}>
-        <Route component={Main}>
-            <IndexRoute component={Home} />
-            <Route path="/" component={Home}/>
-            {/*<IndexRoute component={Home} />*/}
-            <Route path="/cars" component={Car} data={data}/>
-            {/* Parameter route*/}
-            <Route path="/cars/:id" component={CarDetail} data={data}/>
-            <Route path="/about" component={About}/>
-        </Route>
-    </Router>,
+// Object.keys(array).length
+
+// data.length;
+
+
+function Welcome(props) {
+    return (
+        <Router history={browserHistory}>
+            <Route component={Main}>
+                <IndexRoute component={Home} />
+                <Route path="/" component={Home}/>
+                {/*<IndexRoute component={Home} />*/}
+                <Route path="/cars" component={Car} data={data}/>
+                {/* Parameter route*/}
+                <Route path="/cars/:id" component={CarDetail} data={data}/>
+                <Route path="/about" component={About}/>
+            </Route>
+        </Router>
+    );
+}
+
+const XApp = (props)=>{
+    return (
+        <Router history={browserHistory}>
+            <Route component={Main}>
+                <IndexRoute component={Home} />
+                <Route path="/" component={Home}/>
+                {/*<IndexRoute component={Home} />*/}
+                <Route path="/cars" component={Car} data={data}/>
+                {/* Parameter route*/}
+                <Route path="/cars/:id" component={CarDetail} data={data}/>
+                <Route path="/about" component={About}/>
+            </Route>
+        </Router>
+    );
+};
+
+
+ReactDOM.render(
+    <Welcome />,
     document.getElementById('container')
 );
+
+// export XApp;
+
+export default Welcome;
+
+
+
+

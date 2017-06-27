@@ -16,9 +16,19 @@ var config = {
                 test : /\.jsx?/,
                 include : APP_DIR,
                 loader : 'babel'
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
             }
         ]
     }
 };
 
 module.exports = config;
+
+// loader: "style-loader!css-loader!less-loader"
+
+// npm i -D css-loader style-loader
+
+

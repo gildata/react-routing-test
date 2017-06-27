@@ -4,16 +4,27 @@ import { browserHistory } from 'react-router';
 class CarDetail extends Component {
     handleRedirect(){
         browserHistory.push('/cars');
+        // navigation
     }
     render(){
         const cars = this.props.route.data;
+        // data
         const id = this.props.params.id;
+        // params
+        console.log(`&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&`);
+        console.log(`typeof id = ${typeof(id)}`);
+        console.log(`params.id = ${id}`);
+        
+        // number
         const car = cars.filter(car => {
+            console.log(`******************************************************`);
+            console.log(`car.id = ${car.id}`);
+            console.log(`typeof car.id = ${typeof(car.id)}`);
+            // number
             if(car.id == id) {
                 return car;
             }
         });
-
         return (
             <div>
                 <h1>{car[0].name}</h1>
@@ -40,4 +51,4 @@ class CarDetail extends Component {
     }
 }
 
-export default CarDetail
+export default CarDetail;
