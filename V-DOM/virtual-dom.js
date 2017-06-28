@@ -1,76 +1,40 @@
 /**
- * Created by zrz on 2016/11/29.
- * @version 1.0.0 created
+ * created by xgqfrms on 2017/06/28.
+ * @version 1.0.0 
  */
-
 "use strict";
+
+// import json from './data.json';
+
+const datas = (() => {
+    // fetch data
+    const url = `./data.json`;
+    fetch(url)
+    .then((response) => response.json())
+    .then((json)=> {
+        console.log(`json, ${json}`);
+        return datas = json;
+    })
+})();
+
 
 /* globals svd */
 
 // 模拟商品数据
-var GOODS = {
-    229:{
-        gid:229,
-        name:"统一阿萨姆奶茶 500ml*15瓶/箱",
-        price:45,
-        dadou:0,
-        left:10,
-        quantity:1,
-        activity:{
-            aid:1,
-            baseLine:100,
-            off:10
-        }
-    },
-    133470:{
-        gid:133470,
-        name:"洽洽山核桃味瓜子108g/袋",
-        price:22,
-        dadou:0,
-        left:4,
-        quantity:1,
-        activity:{
-            aid:2,
-            baseLine:55,
-            off:20
-        }
-    },
-    157704:{
-        gid:157704,
-        name:"山果印象蓝莓味1L*6瓶/箱",
-        price:70,
-        dadou:0,
-        left:3,
-        quantity:2,
-        activity:{
-            aid:1,
-            baseLine:100,
-            off:10
-        }
-    },
-    146513:{
-        gid:146513,
-        name:"【买10赠1】加多宝凉茶250ml*18盒/箱",
-        price:275,
-        dadou:50,
-        left:20,
-        quantity:1,
-        activity:null
-    }
-};
+let GOODS = datas;
 
-var el = svd.el;                // 创建虚拟元素
-// var diff = svd.diff;            // 比对区别
-// var patch = svd.patch;          // 更新不同，打补丁
-var Root, Tree;// Dom树和虚拟树
+let el = svd.el;                // 创建虚拟元素
+// let diff = svd.diff;            // 比对区别
+// let patch = svd.patch;          // 更新不同，打补丁
+let Root, Tree;// Dom树和虚拟树
 
 
 // 价格计算
-var Calc = (function () {
+let Calc = (function () {
     // 合计价格数据
-    var _;
+    let _;
     // 总计价格的重置
-    var reset = function () {
+    let reset = function () {
         _ = {
             sum: 0,       // 商品总价
             activity: 0,    // 活动减价
@@ -78,18 +42,18 @@ var Calc = (function () {
         };
     };
     // 金额条显示
-    var render = function () {
+    let render = function () {
         return el('div', {
             class: 'col-sm-12',
             style: 'text-align:right;'
         }, ['合计金额 ¥' + _.sum + ' 元']);
     };
     // 获取商品价格
-    var getPrice = function (g) {
+    let getPrice = function (g) {
         return g.price;
     };
     // 商品类
-    var Good = function (g) {
+    let Good = function (g) {
         this.price = Calc.getPrice(g);
         this.sum = g.quantity * this.price;
         this.dd = 'dadou' in g && g.dadou || 0;
@@ -107,13 +71,13 @@ var Calc = (function () {
 }());
 
 // Dom操作
-var Dom = (function () {
+let Dom = (function () {
     // 活动列表
-    var _activityList = {}
+    let _activityList = {}
         , _goodDomArray = []; // 非活动商品dom数组
     // 拼装商品
-    var setGood = function (good) {
-        var _opt = {class: 'col-sm-12 form-group good-group', 'data-gid': good.gid}
+    let setGood = function (good) {
+        let _opt = {class: 'col-sm-12 form-group good-group', 'data-gid': good.gid}
             , _g = new Calc.Good(good);
         if (good.quantity <= 0) { //fixme 删除商品，则隐藏，否则有个侦听的bug
             _opt['style'] = 'display:none;';
@@ -139,19 +103,18 @@ var Dom = (function () {
         ]);
     };
     // 重置活动信息
-    var resetActivity = function () {
+    let resetActivity = function () {
         _activityList = {};
         _goodDomArray = [];
     };
-
     // 写入活动信息
-    var setActivity = function (good) {
+    let setActivity = function (good) {
         if ('activity' in good && good.activity) {
-            var _act = good.activity
+            let _act = good.activity
                 , _aid = _act.aid
                 , _good = new Calc.Good(good);
             if (_aid in _activityList) {// 当前活动已存在
-                var __act = _activityList[_aid];
+                let __act = _activityList[_aid];
                 __act.sum = parseFloat(__act.sum) + _good.sum;
                 __act.goods.push(setGood(good));
             } else {
@@ -166,14 +129,13 @@ var Dom = (function () {
             _goodDomArray.push(setGood(good));
         }
     };
-
     // 拼接活动信息
-    var getActivity = function () {
-        var _act = _activityList
+    let getActivity = function () {
+        let _act = _activityList
             , _ = [];
-        for (var a in _act) {
+        for (let a in _act) {
             if (_act.hasOwnProperty(a)) {
-                var __act = _act[a], __dom;
+                let __act = _act[a], __dom;
                 if (__act.sum >= __act.baseLine) {
                     __dom = ' 已满 ¥' + __act.baseLine + ' 元,减 ¥' + __act.off;
                 } else if (__act.sum <= 0) {// 该活动总价为0
@@ -191,12 +153,12 @@ var Dom = (function () {
         return _;
     };
     // 拼装商品列表
-    var setList = function () {
-        var _gld = [];//商品列表dom数组
+    let setList = function () {
+        let _gld = [];//商品列表dom数组
         resetActivity();
-        for (var g in GOODS) {
+        for (let g in GOODS) {
             if (GOODS.hasOwnProperty(g)) {
-                var good = GOODS[g];
+                let good = GOODS[g];
                 setActivity(good);
             }
         }
@@ -212,13 +174,12 @@ var Dom = (function () {
         set: setList
     };
 }());
-
 // 侦听
-var Listener = (function () {
+let Listener = (function () {
     // 内容拼接
-    var container = function () {
+    let container = function () {
         if (Tree) {                                 // 虚拟树存在则更新补丁
-            var newTree = Dom.set()                     // 生成新的虚拟树
+            let newTree = Dom.set()                     // 生成新的虚拟树
                 , patches = svd.diff(Tree, newTree);    // 与已有虚拟树对比
             svd.patch(Root, patches);                   // 打补丁到原有Dom树中
             Tree = newTree;                             // 更新虚拟树
@@ -229,9 +190,9 @@ var Listener = (function () {
         }
     };
     // 事件侦听
-    var setListener = function () {
-        var changeQuantity = function (e, qua) {
-            var gid = $(e).parents('.good-group').data('gid')
+    let setListener = function () {
+        let changeQuantity = function (e, qua) {
+            let gid = $(e).parents('.good-group').data('gid')
                 , good = GOODS[gid];
             good.quantity = parseInt(good.quantity) + qua;
             Calc.reset();
@@ -247,7 +208,7 @@ var Listener = (function () {
             });
     };
     // 初始化
-    var init = function () {
+    let init = function () {
         Calc.reset();
         container();
         setListener();
@@ -260,3 +221,9 @@ var Listener = (function () {
 $(function () {
     Listener.init();
 });
+
+
+
+
+
+
