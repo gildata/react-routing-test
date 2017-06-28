@@ -1,0 +1,54 @@
+{
+    "229": {
+        "gid": 229,
+        "name": "统一阿萨姆奶茶 500ml*15瓶/箱",
+        "price": 45,
+        "dadou": 0,
+        "left": 10,
+        "quantity": 1,
+        "activity": {
+            "aid": 1,
+            "baseLine": 100,
+            "off": 10
+        }
+    },
+    "133470": {
+        "gid": 133470,
+        "name": "洽洽山核桃味瓜子108g/袋",
+        "price": 22,
+        "dadou": 0,
+        "left": 4,
+        "quantity": 1,
+        "activity": {
+            "aid": 2,
+            "baseLine": 55,
+            "off": 20
+        }
+    },
+    "157704": {
+        "gid": 157704,
+        "name": "山果印象蓝莓味1L*6瓶/箱",
+        "price": 70,
+        "dadou": 0,
+        "left": 3,
+        "quantity": 2,
+        "activity": {
+            "aid": 1,
+            "baseLine": 100,
+            "off": 10
+        }
+    },
+    "146513": {
+        "gid": 146513,
+        "name": "【买10赠1】加多宝凉茶250ml*18盒/箱",
+        "price": 275,
+        "dadou": 50,
+        "left": 20,
+        "quantity": 1,
+        "activity": {
+            "aid": 0,
+            "baseLine": 0,
+            "off": 0
+        }
+    }
+}
